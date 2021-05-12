@@ -7,7 +7,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
-		publicPath: '/'
+		publicPath: '/',
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],
@@ -57,4 +57,5 @@ module.exports = {
 		historyApiFallback: true,
 		open: true,
 	},
+	devtool: 'source-map',
 }
