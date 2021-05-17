@@ -1,18 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import AppContext from '../context/AppContext'
+import Map from '../components/Map'
+import useGoogleAddress from '../hooks/useGoogleAddress'
 import '../styles/components/Success.css'
 
 const Success = () => {
-  return (
-    <div className="Success">
-      <div className="Success-content">
-        <h2>Christian, gracias por tu pedido</h2>
-        <span>Tu pedido llegara en 3 dias a tu direccion</span>
-        <div className="Success-">
-          Google Maps integration
-        </div>
-      </div>
-    </div>
-  )
+	const { state } = useContext(AppContext)
+	const { buyer } = state
+	const location = useGoogleAddress(buyer[0].address)
+
+	return (
+		<div className="Success">
+			<div className="Success-content">
+				<h2>`${buyer.name}, gracias por tu pedido`</h2>
+				<span>Tu pedido llegara en 3 dias a tu direccion:</span>
+				<div className="Success-map">
+					<Map data={location} />
+				</div>
+			</div>
+		</div>
+	)
 }
 
 export default Success
